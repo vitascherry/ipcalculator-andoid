@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">IPCalculator++</string>
+    <string name="IPInputHint">Enter IP Address</string>
+    <string name="Slash">/</string>
+    <string name="mNetmask">Netmask</string>
+    <string name="Calculate">Calculate</string>
+    <string name="IPAddressKey">IP Address</string>
+    <string name="NetmaskKey">Netmask</string>
+    <string name="WildcardKey">Wildcard</string>
+    <string name="NetworkKey">Network</string>
+    <string name="BroadcastKey">Broadcast</string>
+    <string name="MinHostKey">Min Host</string>
+    <string name="MaxHostKey">Max Host</string>
+    <string name="HostCount">Host Count</string>
+    <string name="Binary">+binary</string>
+</resources>
