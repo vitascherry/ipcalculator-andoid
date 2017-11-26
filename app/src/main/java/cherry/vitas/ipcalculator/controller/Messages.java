@@ -1,14 +1,11 @@
 package cherry.vitas.ipcalculator.controller;
 
+import cherry.vitas.ipcalculator.R;
+
 interface Messages {
-    String EXCEPTION_IP4_ADDRESS =
-            "IP address should match the pattern [0-255].[0-255].[0-255].[0-255]";
-    String EXCEPTION_IP4_ADDRESS_BINARY =
-            "IP address should match the pattern [0-11111111]";
-    String EXCEPTION_NETMASK =
-            "Netmask value should be integer number from 1 to 32";
-    String EXCEPTION_NETMASK_ADDRESS =
-            "Netmask octets should match the pattern [0|128|192|224|240|248|252|254]";
-    String EXCEPTION_NETMASK_BINARY_ADDRESS =
-            "Netmask octets should match the pattern [0|1000|1100|1110|1111|]";
+    int EXCEPTION_IP4_ADDRESS = R.string.EXCEPTION_IP4_ADDRESS;
+    int EXCEPTION_IP4_ADDRESS_BINARY = R.string.EXCEPTION_IP4_ADDRESS_BINARY;
+    int EXCEPTION_NETMASK_VALUE = R.string.EXCEPTION_NETMASK_VALUE;
+    int EXCEPTION_NETMASK = R.string.EXCEPTION_NETMASK;
+    int EXCEPTION_NETMASK_BINARY = R.string.EXCEPTION_NETMASK_BINARY;
 }

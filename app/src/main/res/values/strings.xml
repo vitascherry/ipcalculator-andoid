@@ -13,4 +13,10 @@
     <string name="MaxHostKey">Max Host</string>
     <string name="HostCount">Host Count</string>
     <string name="Binary">+binary</string>
+    <string name="BinaryInput">Binary</string>
+    <string name="EXCEPTION_IP4_ADDRESS">IP address should match the pattern [0–255].[0–255].[0–255].[0–255]</string>
+    <string name="EXCEPTION_IP4_ADDRESS_BINARY">IP address should match the pattern [0–11111111] [0–11111111] [0–11111111] [0–11111111]</string>
+    <string name="EXCEPTION_NETMASK_VALUE">Netmask value should be integer number from 1 to 32</string>
+    <string name="EXCEPTION_NETMASK">Netmask octets should match the pattern [0|128|192|224|240|248|252|254]</string>
+    <string name="EXCEPTION_NETMASK_BINARY">Netmask octets should match the pattern [1000|1100|1110|1111]</string>
 </resources>

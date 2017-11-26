@@ -76,7 +76,7 @@ public class IPCalculatorData {
         this.maxHostCount = maxHostCount;
     }
 
-    public int getNetmaskValue() {
+    int getNetmaskValue() {
         return netmaskValue;
     }
 

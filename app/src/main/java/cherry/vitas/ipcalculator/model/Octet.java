@@ -3,6 +3,8 @@ package cherry.vitas.ipcalculator.model;
 import java.util.BitSet;
 
 import static cherry.vitas.ipcalculator.model.NumericConstants.OCTET_SIZE;
+import static cherry.vitas.ipcalculator.model.StringConstants.NEGATIVE_BIT;
+import static cherry.vitas.ipcalculator.model.StringConstants.POSITIVE_BIT;
 
 public class Octet {
 
@@ -75,6 +77,13 @@ public class Octet {
     @Override
     public String toString() {
         return String.valueOf(value);
+    }
+
+    String toBitString() {
+        StringBuilder s = new StringBuilder();
+        for(int i = 0; i < OCTET_SIZE; ++i)
+            s.append((getBitSet().get(i)) ? POSITIVE_BIT : NEGATIVE_BIT);
+        return s.toString();
     }
 
     @Override

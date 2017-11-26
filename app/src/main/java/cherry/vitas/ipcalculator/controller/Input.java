@@ -1,38 +1,31 @@
 package cherry.vitas.ipcalculator.controller;
 
+import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RadioButton;
 
 public class Input {
 
-    private RadioButton mIPAddressBinary;
-    private RadioButton mNetmaskBinary;
-    private EditText mIPAddress;
-    private EditText mNetmask;
+    private CheckBox mBinaryInput;
+    private EditText mIPAddressInput;
+    private EditText mNetmaskInput;
 
-    public boolean isEmpty() { return mIPAddress.length() == 0 || mNetmask.length() == 0; }
+    public boolean isEmpty() { return mIPAddressInput.length() == 0 || mNetmaskInput.length() == 0; }
 
-    public void setIPAddressBinary(RadioButton mIPAddressBinary) {
-        this.mIPAddressBinary = mIPAddressBinary;
+    public void setBinaryInput(CheckBox mBinaryInput) {
+        this.mBinaryInput = mBinaryInput;
     }
 
-    public void setNetmaskBinary(RadioButton mNetmaskBinary) {
-        this.mNetmaskBinary = mNetmaskBinary;
+    public void setIPAddress(EditText mIPAddressInput) {
+        this.mIPAddressInput = mIPAddressInput;
     }
 
-    public void setIPAddress(EditText mIPAddress) {
-        this.mIPAddress = mIPAddress;
+    public void setNetmask(EditText mNetmaskInput) {
+        this.mNetmaskInput = mNetmaskInput;
     }
 
-    public void setNetmask(EditText mNetmask) {
-        this.mNetmask = mNetmask;
-    }
+    String getIPAddress() { return mIPAddressInput.getText().toString(); }
 
-    String getIP() { return mIPAddress.getText().toString(); }
+    String getNetmask() { return mNetmaskInput.getText().toString(); }
 
-    String getNetmask() { return mNetmask.getText().toString(); }
-
-    boolean getIPBinaryChecked() { return mIPAddressBinary.isChecked(); }
-
-    boolean getNetmaskBinaryChecked() { return mNetmaskBinary.isChecked(); }
+    boolean isBinaryInputChecked() { return mBinaryInput.isChecked(); }
 }

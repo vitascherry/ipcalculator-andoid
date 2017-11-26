@@ -4,8 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.TextView;
 
 import cherry.vitas.ipcalculator.controller.Controller;
@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private Controller appController;
     private cherry.vitas.ipcalculator.view.View appView;
     private Input appInput;
-    Button mCalculateBinary;
+    private Button mCalculateBinary;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Model appModel = new Model();
-        appView = new cherry.vitas.ipcalculator.view.View();
+        appView = new cherry.vitas.ipcalculator.view.View(getApplicationContext());
         appInput = new Input();
         appController = new Controller(appModel, appView, appInput);
         mCalculateBinary = (Button)findViewById(R.id.CalculateBinary);
@@ -37,12 +37,10 @@ public class MainActivity extends AppCompatActivity {
     private void initInputView() {
         appInput.setIPAddress((EditText) findViewById(R.id.IPAddressInput));
         appInput.setNetmask((EditText) findViewById(R.id.NetmaskInput));
-        appInput.setIPAddressBinary((RadioButton) findViewById(R.id.IPAddressBinary));
-        appInput.setNetmaskBinary((RadioButton) findViewById(R.id.NetmaskBinary));
+        appInput.setBinaryInput((CheckBox) findViewById(R.id.BinaryInput));
     }
 
     private void initTextView() {
-        appView.setErrorMassage((TextView) findViewById(R.id.ErrorMassage));
         appView.setIPAddressValue((TextView) findViewById(R.id.IPAddressValue));
         appView.setIPAddressBitString((TextView) findViewById(R.id.IPAddressBitString));
         appView.setNetmaskValue((TextView) findViewById(R.id.NetmaskValue));

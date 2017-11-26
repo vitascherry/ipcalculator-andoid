@@ -16,7 +16,7 @@ public class IPAddress {
 
     public void setOctets(Octet[] address) { this.address = address; }
 
-    static Octet[] parseOctets(String address) {
+    private static Octet[] parseOctets(String address) {
         Octet[] parsed = new Octet[OCTETS_COUNT];
         String[] values = address.split(IP_ADDRESS_SEPARATOR);
         for(int i = 0; i < OCTETS_COUNT; ++i)
@@ -27,7 +27,7 @@ public class IPAddress {
     public String toBitString() {
         StringBuilder s = new StringBuilder();
         for(int i = 0; i < OCTETS_COUNT; ++i) {
-            s.append(address[i].toString());
+            s.append(address[i].toBitString());
             if(i != OCTETS_COUNT - 1)
                 s.append(WHITESPACE);
         }

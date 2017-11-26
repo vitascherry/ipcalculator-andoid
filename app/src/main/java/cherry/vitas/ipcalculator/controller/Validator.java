@@ -19,8 +19,8 @@ class Validator {
     }
 
     /**
-     * Validate ip address with regular expression
-     * @param ipAddress IP address to validate
+     * Validates IP4 address with regular expression
+     * @param ipAddress IP4 address
      * @return true, if ip address matches pattern, else - false
      */
     boolean validateIPAddress(String ipAddress){
@@ -28,17 +28,17 @@ class Validator {
     }
 
     /**
-     * Validate ip binary address with regular expression
-     * @param ipAddress IP address to validate
+     * Validates binary IP4 address with regular expression
+     * @param ipBinaryAddress IP4 address
      * @return true, if ip binary address matches pattern, else - false
      */
-    boolean validateIPAddressBinary(String ipAddress){
-        return this.ipAddressBinary.matcher(ipAddress).matches();
+    boolean validateIPAddressBinary(String ipBinaryAddress){
+        return this.ipAddressBinary.matcher(ipBinaryAddress).matches();
     }
 
     /**
-     * Validate netmask address with regular expression
-     * @param netmaskAddress Netmask address to validate
+     * Validates netmask address with regular expression
+     * @param netmaskAddress Netmask address
      * @return true, if netmask address matches pattern, else - false
      */
     boolean validateNetmaskAddress(String netmaskAddress) {
@@ -46,17 +46,17 @@ class Validator {
     }
 
     /**
-     * Validate netmask binary address with regular expression
-     * @param netmaskAddress Netmask address to validate
+     * Validates binary netmask address with regular expression
+     * @param netmaskBinaryAddress Netmask binary address
      * @return true, if netmask binary address matches pattern, else - false
      */
-    boolean validateNetmaskAddressBinary(String netmaskAddress) {
-        return this.netmaskAddressBinary.matcher(netmaskAddress).matches();
+    boolean validateNetmaskAddressBinary(String netmaskBinaryAddress) {
+        return this.netmaskAddressBinary.matcher(netmaskBinaryAddress).matches();
     }
 
     /**
-     * Validate netmask with regular expression
-     * @param netmaskValue Netmask to validate
+     * Validates netmask value with regular expression
+     * @param netmaskValue Netmask value
      * @return true, if netmask matches pattern, else - false
      */
     boolean validateNetmaskValue(String netmaskValue) {

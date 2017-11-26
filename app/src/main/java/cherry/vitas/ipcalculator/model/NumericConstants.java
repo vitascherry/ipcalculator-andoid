@@ -5,5 +5,5 @@ public interface NumericConstants {
     int OCTET_SIZE = 8;
     int OCTETS_COUNT = 4;
     int OCTET_MAX_VALUE = 255;
-    byte NETMASK_MAXIMUM = 32;
+    int NETMASK_MAXIMUM = 32;
 }

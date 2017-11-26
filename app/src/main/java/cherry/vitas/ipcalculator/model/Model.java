@@ -3,20 +3,16 @@ package cherry.vitas.ipcalculator.model;
 import cherry.vitas.ipcalculator.controller.Notation;
 
 import static cherry.vitas.ipcalculator.model.NumericConstants.MAX_NETMASK_HOST_COUNT;
-import static cherry.vitas.ipcalculator.model.NumericConstants.NETMASK_MAXIMUM;
+import static cherry.vitas.ipcalculator.utils.NetmaskUtils.isNetmaskMaximum;
 import static cherry.vitas.ipcalculator.model.IPCalculator.*;
 
 public class Model {
     private IPCalculatorDataFactory dataFactory;
     private IPCalculatorData data;
 
-    public void clearData() {
-        data = null;
-    }
+    public void clearData() { data = null; }
 
-    public IPCalculatorData getData() {
-        return data;
-    }
+    public IPCalculatorData getData() { return data; }
 
     /**
      * Initialize calculator with IP and Netmask
@@ -49,19 +45,12 @@ public class Model {
                 calculateBroadcast(data.getAddress(), wildcard);
         data.setBroadcast(broadcast);
         data.setMinHost( calculateMinHost(network) );
-        if(isNetmaskMaximum()) {
+        if(isNetmaskMaximum(data.getNetmaskValue())) {
             data.setMaxHost(broadcast.clone());
             data.setMaxHostCount(MAX_NETMASK_HOST_COUNT);
         } else {
             data.setMaxHost(calculateMaxHost(broadcast));
             data.setMaxHostCount(calculateMaxHostCount(wildcard));
         }
-    }
-
-    /**
-     * @return true, if netmask value is max, else - false
-     */
-    private boolean isNetmaskMaximum() {
-        return data.getNetmaskValue() == NETMASK_MAXIMUM;
     }
 }

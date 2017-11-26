@@ -4,10 +4,10 @@ import cherry.vitas.ipcalculator.model.Model;
 import cherry.vitas.ipcalculator.view.View;
 
 import static cherry.vitas.ipcalculator.controller.Messages.EXCEPTION_IP4_ADDRESS_BINARY;
-import static cherry.vitas.ipcalculator.controller.Messages.EXCEPTION_NETMASK_BINARY_ADDRESS;
+import static cherry.vitas.ipcalculator.controller.Messages.EXCEPTION_NETMASK_BINARY;
 import static cherry.vitas.ipcalculator.controller.Messages.EXCEPTION_IP4_ADDRESS;
+import static cherry.vitas.ipcalculator.controller.Messages.EXCEPTION_NETMASK_VALUE;
 import static cherry.vitas.ipcalculator.controller.Messages.EXCEPTION_NETMASK;
-import static cherry.vitas.ipcalculator.controller.Messages.EXCEPTION_NETMASK_ADDRESS;
 import static cherry.vitas.ipcalculator.utils.NetmaskUtils.isNumber;
 
 public class Controller {
@@ -29,60 +29,82 @@ public class Controller {
     }
 
     /**
-     * Validates ip and netmask and calculates result data
+     * Program entrypoint
      */
     public void processClickCalculate() {
-        String ip = input.getIP();
+        String ip = input.getIPAddress();
         String netmask = input.getNetmask();
-
-        if (input.getIPBinaryChecked()) {
+        if (input.isBinaryInputChecked()) {
             processBinaryChecked(ip, netmask);
         } else {
-            if (!validator.validateIPAddress(ip)) {
-                view.printError(EXCEPTION_IP4_ADDRESS);
-                model.clearData();
-                return;
-            }
-            if (isNumber(netmask)) {
-                if (!validator.validateNetmaskValue(netmask)) {
-                    view.printError(EXCEPTION_NETMASK);
-                    model.clearData();
-                    return;
-                }
-            } else {
-                if (!validator.validateNetmaskAddress(netmask)) {
-                    view.printError(EXCEPTION_NETMASK_ADDRESS);
-                    model.clearData();
-                    return;
-                }
-            }
-            model.initCalculator(ip, netmask, Notation.DECIMAL);
-            model.calculateData();
-            view.printIPCalculatorData(model.getData());
+            processBinaryUnchecked(ip, netmask);
         }
     }
 
     /**
-     * Validates binary ip and binary netmask and calculates result data
+     * Clears data and prints error message
+     * @param errorMessageId error message id to print
+     */
+    private void processErrorInput(int errorMessageId) {
+        model.clearData();
+        view.printError(errorMessageId);
+    }
+
+    /**
+     * Validates decimal ip4 address and decimal netmask
+     * @param ip string with ip4 address
+     * @param netmask string with netmask
+     */
+    private void processBinaryUnchecked(String ip, String netmask) {
+        if (!validator.validateIPAddress(ip)) {
+            processErrorInput(EXCEPTION_IP4_ADDRESS);
+            return;
+        }
+        if (isNumber(netmask)) {
+            if (!validator.validateNetmaskValue(netmask)) {
+                processErrorInput(EXCEPTION_NETMASK_VALUE);
+                return;
+            }
+        } else {
+            if (!validator.validateNetmaskAddress(netmask)) {
+                processErrorInput(EXCEPTION_NETMASK);
+                return;
+            }
+        }
+        calculateResultData(ip, netmask, Notation.DECIMAL);
+    }
+
+    /**
+     * Validates binary ip4 address and binary netmask
+     * @param ip string with binary ip4 address
+     * @param netmask string with binary netmask
      */
     private void processBinaryChecked(String ip, String netmask) {
         if (!validator.validateIPAddressBinary(ip)) {
-            view.printError(EXCEPTION_IP4_ADDRESS_BINARY);
-            model.clearData();
+            processErrorInput(EXCEPTION_IP4_ADDRESS_BINARY);
             return;
         }
         if (!validator.validateNetmaskAddressBinary(netmask)) {
-            view.printError(EXCEPTION_NETMASK_BINARY_ADDRESS);
-            model.clearData();
+            processErrorInput(EXCEPTION_NETMASK_BINARY);
             return;
         }
-        model.initCalculator(ip, netmask, Notation.BINARY);
+        calculateResultData(ip, netmask, Notation.BINARY);
+    }
+
+    /**
+     * Calculates and prints result data
+     * @param ip string with ip4 address
+     * @param netmask string with netmask
+     * @param type notation type: binary or decimal
+     */
+    private void calculateResultData(String ip, String netmask, Notation type) {
+        model.initCalculator(ip, netmask, type);
         model.calculateData();
         view.printIPCalculatorData(model.getData());
     }
 
     /**
-     * Prints binary representation of data
+     * Prints binary representation of calculated data
      */
     public void processClickBinary() {
         if(model.getData() != null) {
