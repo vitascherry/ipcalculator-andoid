@@ -8,24 +8,16 @@ import static cherry.vitas.ipcalculator.model.StringConstants.POSITIVE_BIT;
 
 public class Octet {
 
-    private int value;
     private BitSet bitArray;
 
     Octet(String s) { this(Integer.parseInt(s)); }
 
     Octet(int value) {
-        this.value = value;
         bitArray = parseBitSet(value);
     }
 
     Octet(BitSet bitArray) {
         this.bitArray = bitArray;
-        value = getDecimalRepresent(bitArray);
-    }
-
-    private Octet(BitSet bitArray, int value) {
-        this.bitArray = bitArray;
-        this.value = value;
     }
 
     private Octet() {bitArray = new BitSet(OCTET_SIZE);}
@@ -76,7 +68,7 @@ public class Octet {
 
     @Override
     public String toString() {
-        return String.valueOf(value);
+        return String.valueOf(getDecimalRepresent(bitArray));
     }
 
     String toBitString() {
@@ -88,7 +80,7 @@ public class Octet {
 
     @Override
     public Octet clone() {
-        BitSet clonedBitArray = (BitSet)this.bitArray.clone();
-        return new Octet(clonedBitArray, value);
+        BitSet clonedBitArray = (BitSet)bitArray.clone();
+        return new Octet(clonedBitArray);
     }
 }
